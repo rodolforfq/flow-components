@@ -1052,7 +1052,7 @@ public class Dialog extends Component implements HasComponents, HasSize,
     public boolean removeClassName(String className) {
         boolean result = HasStyle.super.removeClassName(className);
 
-        if (result == true) {
+        if (result) {
             updateOverlayClassName();
         }
 
