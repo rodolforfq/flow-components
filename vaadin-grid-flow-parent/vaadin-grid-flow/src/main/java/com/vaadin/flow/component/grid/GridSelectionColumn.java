@@ -29,7 +29,7 @@ import com.vaadin.flow.function.SerializableRunnable;
  * @author Vaadin Ltd.
  */
 @Tag("vaadin-grid-flow-selection-column")
-@NpmPackage(value = "@vaadin/polymer-legacy-adapter", version = "24.2.0-alpha6")
+@NpmPackage(value = "@vaadin/polymer-legacy-adapter", version = "24.2.0-dev.385a0a5b2")
 @JsModule("@vaadin/polymer-legacy-adapter/style-modules.js")
 @JsModule("./vaadin-grid-flow-selection-column.js")
 public class GridSelectionColumn extends Component {
