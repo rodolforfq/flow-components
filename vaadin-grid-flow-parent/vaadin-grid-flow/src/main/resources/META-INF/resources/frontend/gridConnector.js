@@ -102,19 +102,19 @@ import { isFocusable } from '@vaadin/grid/src/vaadin-grid-active-item-mixin.js';
           return Object.keys(rootPageCallbacks).length > 0 || (!!rootRequestDebouncer && rootRequestDebouncer.isActive());
         });
 
-         grid.$connector.beforeEnsureFlatIndexHierarchy = tryCatchWrapper(function (flatIndex, item) {
-           // add call to queue
-           ensureSubCacheQueue.push({
-             flatIndex,
-             itemkey: grid.getItemId(item)
-           });
+        grid.$connector.beforeEnsureFlatIndexHierarchy = tryCatchWrapper(function (flatIndex, item) {
+          // add call to queue
+          ensureSubCacheQueue.push({
+            flatIndex,
+            itemkey: grid.getItemId(item)
+          });
 
-           ensureSubCacheDebouncer = Debouncer.debounce(ensureSubCacheDebouncer, animationFrame, () => {
-             while (ensureSubCacheQueue.length) {
-               grid.$connector.flushEnsureSubCache();
-             }
-           });
-         });
+          ensureSubCacheDebouncer = Debouncer.debounce(ensureSubCacheDebouncer, animationFrame, () => {
+            while (ensureSubCacheQueue.length) {
+              grid.$connector.flushEnsureSubCache();
+            }
+          });
+        });
 
         grid.$connector.doSelection = tryCatchWrapper(function (items, userOriginated) {
           if (selectionMode === 'NONE' || !items.length || (userOriginated && grid.hasAttribute('disabled'))) {
