@@ -205,10 +205,10 @@ import org.slf4j.LoggerFactory;
  *
  */
 @Tag("vaadin-grid")
-@NpmPackage(value = "@vaadin/polymer-legacy-adapter", version = "24.2.0-alpha4")
+@NpmPackage(value = "@vaadin/polymer-legacy-adapter", version = "24.2.0-alpha10")
 @JsModule("@vaadin/polymer-legacy-adapter/style-modules.js")
-@NpmPackage(value = "@vaadin/grid", version = "24.2.0-alpha4")
-@NpmPackage(value = "@vaadin/tooltip", version = "24.2.0-alpha4")
+@NpmPackage(value = "@vaadin/grid", version = "24.2.0-alpha10")
+@NpmPackage(value = "@vaadin/tooltip", version = "24.2.0-alpha10")
 @JsModule("@vaadin/grid/src/vaadin-grid.js")
 @JsModule("@vaadin/grid/src/vaadin-grid-column.js")
 @JsModule("@vaadin/grid/src/vaadin-grid-sorter.js")
@@ -433,7 +433,7 @@ public class Grid<T> extends Component implements HasStyle, HasSize,
      *            type of the underlying grid this column is compatible with
      */
     @Tag("vaadin-grid-column")
-    @NpmPackage(value = "@vaadin/polymer-legacy-adapter", version = "24.2.0-alpha4")
+    @NpmPackage(value = "@vaadin/polymer-legacy-adapter", version = "24.2.0-alpha10")
     @JsModule("@vaadin/polymer-legacy-adapter/style-modules.js")
     public static class Column<T> extends AbstractColumn<Column<T>> {
 
@@ -1127,6 +1127,35 @@ public class Grid<T> extends Component implements HasStyle, HasSize,
 
         public SerializableFunction<T, String> getTooltipGenerator() {
             return tooltipGenerator;
+        }
+
+        /**
+         * Gets whether cells in this column should be announced as row headers.
+         *
+         * @return whether cells in this column should be announced as row
+         *         headers.
+         */
+        public boolean isRowHeader() {
+            return getElement().getProperty("rowHeader", false);
+        }
+
+        /**
+         * Sets whether cells in this column should be announced as row headers.
+         * When {@code true}, the cells for this column will be rendered with
+         * the {@code role} attribute set as {@code rowheader}, instead of the
+         * {@code gridcell} role value used by default.
+         * <p>
+         * When a column is set as row header, its cells will be announced by
+         * screen readers while navigating to help user identify the current row
+         * as uniquely as possible.
+         *
+         * @param rowHeader
+         *            whether cells in this column should be announced as row
+         *            headers
+         */
+        public Column<T> setRowHeader(boolean rowHeader) {
+            getElement().setProperty("rowHeader", rowHeader);
+            return this;
         }
 
         @Override
